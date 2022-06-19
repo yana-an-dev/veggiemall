@@ -5,7 +5,6 @@ export default [
         content: "100% Organic",
         price: "$5",
         img: "https://images.unsplash.com/photo-1595855759920-86582396756a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8dmVnZXRhYmxlc3xlbnwwfHwwfHw%3D&w=1000&q=80"
-
     },
 
     {
