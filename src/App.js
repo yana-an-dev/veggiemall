@@ -1,18 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react'
+import { Navbar, Container, Nav } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Data from './data'
+import Card from './Card'
 
 function App() {
+  let [veggies] = useState(Data)
   return (
     <div className="App">
-      <Button variant="primary">Primary</Button>{' '}
-      <Button variant="secondary">Secondary</Button>{' '}
-      <Button variant="success">Success</Button>{' '}
-      <Button variant="warning">Warning</Button>{' '}
-      <Button variant="danger">Danger</Button>{' '}
-      <Button variant="info">Info</Button>{' '}
-      <Button variant="light">Light</Button>{' '}
-      <Button variant="dark">Dark</Button> <Button variant="link">Link</Button>
+      <Navbar bg="light" variant="light">
+        <Container>
+          <Navbar.Brand href="#home">Veggie Mall</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <div className="main-bg"></div>
+      <div className="container">
+        <div className="row">
+          {veggies.map((veggie) => {
+            return <Card veggie={veggie} key={veggie.id} />
+          })
+          }
+        </div>
+      </div>
     </div>
   );
 }
