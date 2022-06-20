@@ -3,16 +3,18 @@ import React, { useState } from 'react'
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Data from './data'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
 import WrongPage from './pages/WrongPage'
 import Event from './pages/Event'
+import Loading from './components/Loading';
 
 function App() {
-  let [veggies] = useState(Data)
-  let navigate = useNavigate()
-
+  const [veggies, setVeggies] = useState(Data)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <div className="App">
@@ -39,6 +41,22 @@ function App() {
         </Route>
         <Route path='*' element={<WrongPage />} />
       </Routes>
+      <Button onClick={() => {
+        setLoading(true)
+        //TODO: create veggies API
+        fetch('https://codingapple1.github.io/shop/data2.json')
+          .then(res => res.json())
+          .then(data => {
+            const newVeggies = [...veggies, ...data]
+            setVeggies(newVeggies)
+            setLoading(false)
+          })
+          .catch(() => {
+            console.log('failed!')
+            setLoading(false)
+          })
+      }}>More Veggies</Button>
+      {loading ? <Loading /> : null}
     </div>
   );
 }
