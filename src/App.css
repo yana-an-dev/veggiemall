@@ -4,6 +4,11 @@
   background-size : cover;
   background-position : center;
 }
+.veggie-card{
+  margin-top: 20px !important;
+  /* width: 300px !important; */
+  text-align: center;
+}
 
 .veggie-img{
   max-width: 400px;
@@ -13,4 +18,9 @@
 .veggie-detail-img{
   max-width: 800px;
   max-height: 800px;
+}
+.more-btn-container{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
 }

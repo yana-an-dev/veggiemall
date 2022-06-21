@@ -9,11 +9,10 @@ import Home from './pages/Home'
 import Detail from './pages/Detail'
 import WrongPage from './pages/WrongPage'
 import Event from './pages/Event'
-import Loading from './components/Loading';
+
 
 function App() {
   const [veggies, setVeggies] = useState(Data)
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   return (
@@ -31,7 +30,12 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path='/' element={<Home veggies={veggies} />} />
+        <Route path='/' element={
+          <Home
+            veggies={veggies}
+            setVeggies={setVeggies}
+          />}
+        />
         <Route path='detail/:id' element={<Detail veggies={veggies} />} />
         <Route path='about' element={<div>about</div>} />
         <Route path='cart' element={<div>cart</div>} />
@@ -41,22 +45,6 @@ function App() {
         </Route>
         <Route path='*' element={<WrongPage />} />
       </Routes>
-      <Button onClick={() => {
-        setLoading(true)
-        //TODO: create veggies API
-        fetch('https://codingapple1.github.io/shop/data2.json')
-          .then(res => res.json())
-          .then(data => {
-            const newVeggies = [...veggies, ...data]
-            setVeggies(newVeggies)
-            setLoading(false)
-          })
-          .catch(() => {
-            console.log('failed!')
-            setLoading(false)
-          })
-      }}>More Veggies</Button>
-      {loading ? <Loading /> : null}
     </div>
   );
 }
