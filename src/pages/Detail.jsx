@@ -8,14 +8,19 @@ export default function Detail({ veggies }) {
 	const { id } = useParams()
 	const [visible, setVisible] = useState(true)
 	const [tab, setTab] = useState(0)
+	const [fade, setFade] = useState('')
 
 	useEffect(() => {
+		const timerPage = setTimeout(() => {
+			setFade('end')
+		}, 100)
 		const timer = setTimeout(() => {
 			setVisible(false)
 		}, 2000)
 		return () => {
 			//execute before useEffect timer.
 			clearTimeout(timer)
+			clearTimeout(timerPage)
 		}
 	}, []
 	)
@@ -27,7 +32,7 @@ export default function Detail({ veggies }) {
 			{visible ? <Alert key={'warning'} variant={'warning'}>
 				Free delivery for an hour!
         </Alert> : null}
-			<div className="content-container">
+			<div className={"content-container start " + fade}>
 				<img className="veggie-detail-img" src={veggie.img} alt="veggie-product-img" />
 				<div className="product-info">
 					<h4>{veggie.title}</h4>
@@ -36,7 +41,6 @@ export default function Detail({ veggies }) {
 					<Button>Add to Cart</Button>
 				</div>
 			</div>
-
 
 			<Nav justify variant="tabs" defaultActiveKey="link-0">
 				<Nav.Item onClick={() => { setTab(0) }}>

@@ -1,14 +1,27 @@
+import { useEffect } from 'react'
+import { useState } from 'react'
+
 export default function DetailTabContent({ tab, veggies, id }) {
+	const [fade, setFade] = useState('')
+	useEffect(() => {
+		const fadeTimeout = setTimeout(() => {
+			setFade('end')
+		}, 100)
 
-    //const veggie = veggies.find((veggie) => veggie.id == id)
-    if (tab == 0) {
-        return <div>Details why is good? </div>
-    }
-    if (tab == 1) {
-        return <div>About Delivery</div>
-    }
-    if (tab == 2) {
-        return <div> F&Q</div>
-    }
+		return (() => {
+			setFade('')
+			clearTimeout(fadeTimeout)
+		})
+	}, [tab])
+	return (
+		<div className={"start " + fade}>
+			{[
+				<div>Details why is good? </div>,
+				<div>About Delivery</div>,
+				<div> F&Q</div>
+			][tab]
+			}
 
+		</div>
+	)
 }
