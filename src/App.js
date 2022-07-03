@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Detail from './pages/Detail'
 import WrongPage from './pages/WrongPage'
 import Event from './pages/Event'
+import Cart from './pages/Cart'
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
         />
         <Route path='detail/:id' element={<Detail veggies={veggies} />} />
         <Route path='about' element={<div>about</div>} />
-        <Route path='cart' element={<div>cart</div>} />
+        <Route path='cart' element={<Cart />} />
         <Route path='event' element={<Event />}>
           <Route path='one' element={<p>Complimentary 1kg of potatoes for the first order!</p>} />
           <Route path='two' element={<p>Free delivery for the first order!</p>} />

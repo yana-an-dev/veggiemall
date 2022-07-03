@@ -45,3 +45,8 @@
   opacity: 1;
   transition: all 1s;
 }
+
+.cart-count-num{
+  padding-left: 10px;
+  padding-right: 10px;
+}
