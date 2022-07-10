@@ -18,17 +18,22 @@ const addedProducts = createSlice({
   ],
   reducers: {
     increaseCount(state, action) {
-      state[action.payload].count++
+      const i = state.findIndex((e) => e.id === action.payload)
+      state[i].count++
     },
     decreaseCount(state, action) {
-      if (state[action.payload].count > 0) {
-        state[action.payload].count--
+      const i = state.findIndex((e) => e.id === action.payload)
+      if (state[i].count > 0) {
+        state[i].count--
       }
+    },
+    addProduct(state, action) {
+      state.push(action.payload)
     }
   }
 })
 
-export const { increaseCount, decreaseCount } = addedProducts.actions
+export const { increaseCount, decreaseCount, addProduct } = addedProducts.actions
 
 export default configureStore({
   reducer: {

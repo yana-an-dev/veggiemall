@@ -29,9 +29,9 @@ export default function Cart() {
               <td>{product.title}</td>
               <td>{product.price}</td>
               <td>
-                <Button onClick={() => { dispatch(decreaseCount(index)) }} variant="secondary" className='cart-count minus'>-</Button>
+                <Button onClick={() => { dispatch(decreaseCount(product.id)) }} variant="secondary" className='cart-count minus'>-</Button>
                 <span className='cart-count-num'>{product.count}</span>
-                <Button onClick={() => { dispatch(increaseCount(index)) }} variant="secondary" className='cart-count plus'>+</Button>
+                <Button onClick={() => { dispatch(increaseCount(product.id)) }} variant="secondary" className='cart-count plus'>+</Button>
               </td>
             </tr>
           )}
