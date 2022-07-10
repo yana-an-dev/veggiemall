@@ -1,6 +1,6 @@
 import { Table, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux'
-import { increaseCount, decreaseCount } from '../store'
+import { increaseCount, decreaseCount, removeProduct } from '../store'
 import { useReducer } from 'react';
 
 export default function Cart() {
@@ -20,6 +20,7 @@ export default function Cart() {
             <th>Veggies Name</th>
             <th>Price</th>
             <th>Count</th>
+            <th>-</th>
           </tr>
         </thead>
         <tbody>
@@ -29,10 +30,11 @@ export default function Cart() {
               <td>{product.title}</td>
               <td>{product.price}</td>
               <td>
-                <Button onClick={() => { dispatch(decreaseCount(product.id)) }} variant="secondary" className='cart-count minus'>-</Button>
+                <Button variant="success" onClick={() => { dispatch(decreaseCount(product.id)) }} className='cart-count minus'>-</Button>
                 <span className='cart-count-num'>{product.count}</span>
-                <Button onClick={() => { dispatch(increaseCount(product.id)) }} variant="secondary" className='cart-count plus'>+</Button>
+                <Button variant="success" onClick={() => { dispatch(increaseCount(product.id)) }} className='cart-count plus'>+</Button>
               </td>
+              <td><Button variant="secondary" onClick={() => { dispatch(removeProduct(product.id)) }}>Remove</Button></td>
             </tr>
           )}
         </tbody>

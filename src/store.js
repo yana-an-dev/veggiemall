@@ -30,11 +30,15 @@ const addedProducts = createSlice({
     addProduct(state, action) {
       state.push(action.payload)
       console.log('state', state)
+    },
+    removeProduct(state, action) {
+      const i = state.findIndex((e) => e.id === action.payload)
+      state.splice(i, 1)
     }
   }
 })
 
-export const { increaseCount, decreaseCount, addProduct } = addedProducts.actions
+export const { increaseCount, decreaseCount, addProduct, removeProduct } = addedProducts.actions
 
 export default configureStore({
   reducer: {
