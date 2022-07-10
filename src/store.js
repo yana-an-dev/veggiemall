@@ -28,8 +28,12 @@ const addedProducts = createSlice({
       }
     },
     addProduct(state, action) {
-      state.push(action.payload)
-      console.log('state', state)
+      const i = state.findIndex((e) => e.id === action.payload.id)
+      if (state[i]) {
+        state[i].count++
+      } else {
+        state.push(action.payload)
+      }
     },
     removeProduct(state, action) {
       const i = state.findIndex((e) => e.id === action.payload)
