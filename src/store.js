@@ -29,6 +29,7 @@ const addedProducts = createSlice({
     },
     addProduct(state, action) {
       state.push(action.payload)
+      console.log('state', state)
     }
   }
 })
